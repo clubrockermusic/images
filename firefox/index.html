@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Redirecting</title>
+<style>html{background:#2b2a32}</style>
+<script>
+const sites = {
+  inna: ["https://www.instagram.com/inna/", "instagram"],
+  latto: ["https://www.instagram.com/latto/", "instagram"],
+  youtube: "https://www.youtube.com/@clubrockermusic/videos"
+};
+const key = location.search.slice(1);
+const dest = sites[key];
+if (dest) {
+  const icon = key + ".ico";
+  const link = document.createElement("link");
+  link.rel = "icon";
+  link.type = "image/x-icon";
+  link.href = icon;
+  document.head.appendChild(link);
+  const go = () => location.replace(dest);
+  const img = new Image();
+  img.onload = img.onerror = go;
+  img.src = icon;
+  setTimeout(go, 1500);
+}
+</script>
